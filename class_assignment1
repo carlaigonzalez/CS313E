@@ -1,0 +1,162 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Jun  8 14:01:32 2022
+
+@author: carlagonzalez
+"""
+
+''' 
+Fully Automatic Beverage Vending Machine:
+    
+    implement controller software of this machine:
+        brew coffe: espresso, americano, latte macchiato
+        tea: blacl te, green tea and yellow tea
+        be able to add condiments such as milk and sugar 
+        
+        Requirements:
+            When the machine starts up and is initiated, it shows a request question and asks users about their beverage wishes.
+            After each brewing process, the state of the beverage machine should return to the same initial state and display the request question to ask users again.
+            As an additional requirement, the coffee machine should be able to add condiments like milk and sugar to the hot beverage. Users of the machine should be able to select between zero to 3 units of milk or sugar to add. The vending machine should not allow over 3 units of condiments. 
+
+        
+        '''
+       
+class Beverage():
+    def _init_(self, name):
+        self.name = name
+
+    def print_name(self, name):
+        print(self.name)
+    
+    def selection(self, number):
+        self.number = number
+    
+    
+class Tea(Beverage):
+    printin = "1. Tea"
+    
+class Coffe(Beverage):
+    printin = "2. Coffe"
+    
+class Condiments(Beverage):
+   pass
+   def name(self, quanity):
+        self.name = "Condiments"
+       # self.quantity = quantity
+        #if quantity > 3:
+         #   print("The limit for condiments is three.")
+
+class Espresso(Coffe):
+    printin = "1. Espresso"
+    
+    def name(self):
+        self.name = "Espresso"
+        
+    def print_name2(self):
+        print(self.name)
+    
+        
+   
+class Americano(Coffe):
+    printin = "2. Americano"
+    
+    def name(self):
+        self.name = "Americano"
+        
+class Latte_Macchiato(Coffe):
+    printin = "3. Latte Macchiato"
+    
+    def name(self):
+        self.name = "Latte Macchiato"
+
+class Black_Tea(Tea):
+    printin = "1. Black Tea"
+    
+    def name(self):
+        self.name = "Black Tea"
+        
+class Green_Tea(Tea):
+    printin = "2. Green Tea"
+    
+    def name(self):
+        self.name = "Green Tea"
+        
+class Yellow_Tea(Tea):
+    printin = "3. Yellow Tea"
+    
+    def name(self):
+        self.name = "Yellow Tea"
+    
+class Milk(Condiments):
+   printin = "2. Milk"
+   def name(self):
+        self.name = "Milk"
+
+class Sugar(Condiments):
+    printin = "3. Sugar"
+    def name(self):
+        self.name = "Sugar"
+
+class Vending_Machine():
+    def ask_user(self):
+        print("Options:")
+  
+    
+def main():
+
+    vm = Vending_Machine()
+    vm.ask_user()
+    print(Tea.printin)
+    print(Coffe.printin)
+    input1 = input("Select your options [1 or 2]:")
+    
+# ask user if coffe or tea, and depending the selection continue
+    if input1 == "1":
+        vm.ask_user() 
+        print(Black_Tea.printin)
+        print(Green_Tea.printin)
+        print(Yellow_Tea.printin)
+    elif input1 == "2":
+        vm.ask_user()
+        print(Espresso.printin)
+        print(Americano.printin)
+        print(Latte_Macchiato.printin)
+    else:
+        print("Input not accepted, try again")
+        input1 = input("Select your options [1 or 2]:")
+    
+    input2 = input("Select your options [1, 2 or 3]:")
+# ask user if he wants condiments:
+    vm.ask_user()
+    print("1. None")
+    print(Milk.printin)
+    print(Sugar.printin)
+    input3 = input("Would you like any condiments? [1, 2 or 3]:")
+    
+    if input3 == "2" or input3 == "3":
+        input4 = input("How many? ")
+        input5 = input("Would ypu like to add another? [Yes or No]")
+        if input5 == "Yes":
+            vm.ask_user()
+            print("1. None")
+            print(Milk.printin)
+            print(Sugar.printin)
+            input6 = input("What would you like to add?")
+            print("1. None")
+            print(Milk.printin)
+            print(Sugar.printin)
+            input7 = input("How many? ")
+            if int(input4) + int(input7) > 3:
+                print("Can not add more than 3 condiments, try again")
+                input7 = input("How many? ")
+    print("Done,thanks, wait for your order.)
+     
+    
+    
+   
+    
+    
+
+if __name__ == "__main__":
+    main()
